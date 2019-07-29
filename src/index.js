@@ -6,7 +6,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-	<HashRouter basename="/colors-app">
+	<HashRouter basename="/">
 		<App />
 	</HashRouter>,
 	document.getElementById("root")
