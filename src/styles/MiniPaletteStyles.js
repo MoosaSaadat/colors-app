@@ -1,4 +1,4 @@
-export default {
+export default (theme) => ({
 	root: {
 		background: "white",
 		padding: "0.5rem",
@@ -54,15 +54,21 @@ export default {
 		padding: "10px",
 		width: "20px",
 		height: "20px",
-		opacity: "0",
-		transition: "all 0.2s ease-in-out"
+		opacity: "1",
+		transition: "all 0.2s ease-in-out",
+		[theme.breakpoints.up("md")]: {
+			opacity: "0"
+		}
 	},
 	deleteIcon: {
 		backgroundColor: "#eb3d30",
 		padding: "10px",
 		width: "20px",
 		height: "20px",
-		opacity: "0",
-		transition: "all 0.2s ease-in-out"
+		opacity: "1",
+		transition: "all 0.2s ease-in-out",
+		[theme.breakpoints.up("md")]: {
+			opacity: "0"
+		}
 	}
-};
+});

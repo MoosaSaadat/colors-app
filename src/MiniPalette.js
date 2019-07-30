@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import styles from "./styles/MiniPaletteStyles";
