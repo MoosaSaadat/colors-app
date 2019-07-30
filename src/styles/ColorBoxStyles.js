@@ -44,7 +44,8 @@ export default {
 		background: "rgba(255, 255, 255, 0.3)",
 		cursor: "pointer",
 		textDecoration: "none",
-		opacity: "0"
+		opacity: "0",
+		zIndex: "1"
 	},
 	ColorBoxInfo: {
 		boxSizing: "border-box",

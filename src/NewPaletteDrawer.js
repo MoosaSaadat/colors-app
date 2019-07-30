@@ -43,7 +43,7 @@ class NewPaletteDrawer extends Component {
 				</div>
 				<Divider />
 				<div className={classes.container}>
-					<Typography variant="h4" gutterBottom>
+					<Typography variant="h5" gutterBottom>
 						{editModeOn ? "Update Color" : "Add New Color"}
 					</Typography>
 					{!editModeOn && (

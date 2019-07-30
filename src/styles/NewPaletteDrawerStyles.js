@@ -7,30 +7,37 @@ export default (theme) => ({
 	},
 	drawerPaper: {
 		width: drawerWidth,
+		maxWidth: "100vw",
+		maxHeight: "100vh",
 		display: "flex",
 		alignItems: "center"
 	},
 	drawerHeader: {
 		display: "flex",
+		width: "100%",
+		height: "10%",
 		alignItems: "center",
 		padding: "0 8px",
 		...theme.mixins.toolbar,
-		justifyContent: "flex-end",
-		marginLeft: "auto"
+		justifyContent: "flex-end"
 	},
 	container: {
 		width: "90%",
-		height: "100%",
+		height: "90%",
 		display: "flex",
 		flexDirection: "column",
-		justifyContent: "center",
+		justifyContent: "flex-start",
 		alignItems: "center"
 	},
 	buttons: {
-		width: "100%"
+		width: "100%",
+		height: "10%",
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center"
 	},
 	button: {
-		width: "45%",
-		margin: "auto 1.25%"
+		// width: "45%"
+		// margin: "auto 2.5%"
 	}
 });

@@ -67,7 +67,7 @@ class ColorPickerForm extends Component {
 			"Color Already Exists!"
 		];
 		return (
-			<div>
+			<div className={classes.root}>
 				<ChromePicker
 					color={currentColor}
 					className={classes.picker}
@@ -89,9 +89,10 @@ class ColorPickerForm extends Component {
 					/>
 					<Button
 						variant="contained"
-						color="primary"
-						className={classes.addColor}
-						style={{ backgroundColor: currentColor }}
+						fullWidth
+						classes={{ contained: classes.addColor }}
+						// className={classes.addColor}
+						// style={{ backgroundColor: currentColor }}
 						type="submit">
 						{editModeOn ? "Update Color" : "Add Color"}
 					</Button>
