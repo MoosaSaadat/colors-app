@@ -26,8 +26,9 @@ class App extends Component {
 		return this.state.palettes.find((palette) => palette.id === id);
 	}
 	savePalette (newPalette, editPaletteId) {
+		console.log(newPalette, editPaletteId);
 		let newPaletteList = [ ...this.state.palettes, newPalette ];
-		if (editPaletteId !== "") {
+		if (editPaletteId !== "" && editPaletteId !== undefined) {
 			newPaletteList = this.state.palettes.map((palette) => {
 				if (editPaletteId === palette.id) return newPalette;
 				return palette;

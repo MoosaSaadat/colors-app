@@ -58,10 +58,10 @@ class NewPaletteForm extends Component {
 	handleSavePalette (emoji) {
 		let paletteId = this.state.newPaletteName.toLowerCase().replace(/ /g, "-");
 		let newPalette = {
-			colors: this.state.colors,
-			emoji: emoji,
+			paletteName: this.state.newPaletteName,
 			id: paletteId,
-			paletteName: this.state.newPaletteName
+			emoji: emoji,
+			colors: this.state.colors
 		};
 		this.props.savePalette(newPalette, this.state.editPaletteId);
 		this.props.history.push("/");

@@ -13,7 +13,8 @@ class PaletteMetaForm extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			open: true
+			open: true,
+			emojiDialogOpen: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.savePalette = this.savePalette.bind(this);
@@ -37,11 +38,14 @@ class PaletteMetaForm extends Component {
 		this.props.handleNameChange(event);
 	}
 	savePalette (emoji) {
+		this.setState({
+			emojiDialogOpen: false
+		});
 		this.props.handleSavePalette(emoji.native);
 	}
 	render () {
 		const { handleDialogOpen, newPaletteName, editPaletteId } = this.props;
-		const { open } = this.state;
+		const { open, emojiDialogOpen } = this.state;
 		const editModeOn = editPaletteId !== "";
 		const paletteValidators = [
 			"required",
@@ -49,7 +53,7 @@ class PaletteMetaForm extends Component {
 		];
 		return (
 			<div>
-				<Dialog open={!open} onClose={handleDialogOpen}>
+				<Dialog open={emojiDialogOpen} onClose={handleDialogOpen}>
 					<DialogTitle id="form-dialog-title">
 						Choose a Palette Emoji
 					</DialogTitle>
@@ -65,7 +69,7 @@ class PaletteMetaForm extends Component {
 					aria-labelledby="form-dialog-title">
 					<ValidatorForm
 						onSubmit={() => {
-							this.setState({ open: false });
+							this.setState({ open: false, emojiDialogOpen: true });
 						}}>
 						<DialogTitle id="form-dialog-title">
 							Choose a Palette Name
