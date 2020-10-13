@@ -29,7 +29,7 @@ class SingleColorPalette extends Component {
 		this.setState({ format });
 	}
 	render () {
-		const { classes } = this.props;
+		const { colorId, classes } = this.props;
 		const { paletteName, emoji, id } = this.props.palette;
 		const colorBoxes = this._shades.map((color) => (
 			<ColorBox
@@ -42,7 +42,7 @@ class SingleColorPalette extends Component {
 		));
 		return (
 			<div>
-				<Navbar changeFormat={this.changeFormat} showSlider={false} />
+				<Navbar name={colorId} />
 				<div className={classes.Palette}>
 					{colorBoxes}
 					<div className={classes.ColorBoxBlack}>

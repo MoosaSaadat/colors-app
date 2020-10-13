@@ -27,12 +27,14 @@ class Navbar extends Component {
 					</Link>
 				</div>
 				{name}
-				<div className={classes.LikeButton}>
-					<Link to="/" className={classes.LikeLink}>
-						<FavoriteBorderIcon className={classes.LikeIcon} />
-					</Link>
-					<span className={classes.LikeCount}>{likes}</span>
-				</div>
+				{likes && (
+					<div className={classes.LikeButton}>
+						<Link to="/" className={classes.LikeLink}>
+							<FavoriteBorderIcon className={classes.LikeIcon} />
+						</Link>
+						<span className={classes.LikeCount}>{likes}</span>
+					</div>
+				)}
 			</nav>
 		);
 	}
