@@ -21,22 +21,24 @@ export default {
 	BackButton: {
 		height: "100%",
 		width: "4rem",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#ececec",
+		marginRight: "1rem",
 		[sizes.down("xs")]: {
 			marginRight: "5px",
 			padding: "0 5px"
 		}
 	},
 	BackLink: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
+		display: "block",
 		color: "black",
-		width: "100%",
-		height: "100%",
 		textDecoration: "none",
+		height: "2rem",
 	},
 	BackIcon: {
-		fontSize: "3rem",
+		fontSize: "2rem",
 	},
 	LikeButton: {
 		height: "100%",
