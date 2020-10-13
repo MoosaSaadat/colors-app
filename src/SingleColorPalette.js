@@ -6,6 +6,7 @@ import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
 import styles from "./styles/SingleColorPaletteStyles";
 import PaletteSidebar from "./PaletteSidebar";
+import { Button } from "@material-ui/core";
 
 class SingleColorPalette extends Component {
 	constructor (props) {
@@ -52,7 +53,9 @@ class SingleColorPalette extends Component {
 					{colorBoxes}
 					<div className={classes.ColorBoxBlack}>
 						<Link to={`/palette/${id}`} className={classes.GobackBtn}>
-							Go Back
+							<Button variant="contained" color="primary">
+								Go back
+							</Button>
 						</Link>
 					</div>
 				</div>
