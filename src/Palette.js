@@ -36,12 +36,10 @@ class Palette extends Component {
 		));
 		return (
 			<div>
-				{/* <Navbar
-					level={this.state.level}
-					changeLevel={this.changeLevel}
-					changeFormat={this.changeFormat}
-					showSlider={true}
-				/> */}
+				<Navbar
+					name={paletteName}
+					likes={38}
+				/>
 				<PaletteSidebar
 					level={this.state.level}
 					changeLevel={this.changeLevel}
