@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
 import styles from "./styles/SingleColorPaletteStyles";
+import PaletteSidebar from "./PaletteSidebar";
 
 class SingleColorPalette extends Component {
 	constructor (props) {
@@ -43,6 +44,10 @@ class SingleColorPalette extends Component {
 		return (
 			<div>
 				<Navbar name={colorId} />
+				<PaletteSidebar
+					changeFormat={this.changeFormat}
+					showSlider={false}
+				/>
 				<div className={classes.Palette}>
 					{colorBoxes}
 					<div className={classes.ColorBoxBlack}>
@@ -51,7 +56,6 @@ class SingleColorPalette extends Component {
 						</Link>
 					</div>
 				</div>
-				<PaletteFooter name={paletteName} emoji={emoji} />
 			</div>
 		);
 	}

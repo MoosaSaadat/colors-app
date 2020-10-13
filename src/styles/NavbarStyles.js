@@ -12,6 +12,7 @@ export default {
 		width: "85vw",
 		fontSize: "20px",
 		fontWeight: "bold",
+		textTransform: "capitalize",
 		zIndex: "10",
 		backgroundColor: "white",
 		boxShadow:
@@ -62,27 +63,4 @@ export default {
 		fontSize: "18px",
 		fontWeight: "normal",
 	},
-	// Slider: {
-	// 	width: "340px",
-	// 	margin: "0 10px",
-	// 	display: "inline-block",
-	// 	"& .rc-slider-track": {
-	// 		backgroundColor: "transparent"
-	// 	},
-	// 	"& .rc-slider-handle, .rc-slider-handle:hover, .rc-slider-handle:active, .rc-slider-handle:focus": {
-	// 		background: "green",
-	// 		border: "2px solid green",
-	// 		outline: "none",
-	// 		width: "15px",
-	// 		height: "15px",
-	// 		boxShadow: "none"
-	// 	},
-	// 	[sizes.down("sm")]: {
-	// 		width: "150px"
-	// 	}
-	// },
-	// selectContainer: {
-	// 	marginLeft: "auto",
-	// 	marginRight: "1rem"
-	// }
 };

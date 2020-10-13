@@ -54,6 +54,7 @@ export default {
 		width: "100%",
 		padding: "5px",
 		fontSize: "12px",
+		textTransform: "capitalize",
 		color: (props) =>
 			chroma(props.color).luminance() < 0.4 ? "white" : "rgba(0,0,0,0.5)"
 	},

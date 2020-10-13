@@ -2,9 +2,10 @@ import sizes from "../size";
 
 export default {
 	Palette: {
-		height: "90vh",
+		height: "93vh",
 		overflow: "scroll",
-		marginTop: "6vh",
+		marginTop: "7vh",
+		marginLeft: "15vw",
 		display: "flex",
 		flexFlow: "row wrap",
 		alignItems: "flex-start",
@@ -33,10 +34,8 @@ export default {
 		width: "20%",
 		height: "50%",
 		background: "black",
-		// display: "inline-block",
 		position: "relative",
 		textTransform: "uppercase",
-		// marginBottom: "-4px",
 		"&:hover button": {
 			opacity: "1",
 			transition: "0.3s"
