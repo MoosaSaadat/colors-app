@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/styles";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
+import PaletteSidebar from "./PaletteSidebar";
 import styles from "./styles/PaletteStyles";
 
 class Palette extends Component {
@@ -15,7 +16,7 @@ class Palette extends Component {
 		this.changeLevel = this.changeLevel.bind(this);
 		this.changeFormat = this.changeFormat.bind(this);
 	}
-	changeLevel (level) {
+	changeLevel (e, level) {
 		this.setState({ level });
 	}
 	changeFormat (format) {
@@ -35,14 +36,20 @@ class Palette extends Component {
 		));
 		return (
 			<div>
-				<Navbar
+				{/* <Navbar
+					level={this.state.level}
+					changeLevel={this.changeLevel}
+					changeFormat={this.changeFormat}
+					showSlider={true}
+				/> */}
+				<PaletteSidebar
 					level={this.state.level}
 					changeLevel={this.changeLevel}
 					changeFormat={this.changeFormat}
 					showSlider={true}
 				/>
 				<div className={classes.Palette}>{colorBoxes}</div>
-				<PaletteFooter name={paletteName} emoji={emoji} />
+				{/* <PaletteFooter name={paletteName} emoji={emoji} /> */}
 			</div>
 		);
 	}
