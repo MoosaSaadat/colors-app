@@ -1,8 +1,9 @@
 export default {
 	Palette: {
-		height: "90vh",
+		height: "93vh",
 		overflow: "scroll",
-		marginTop: "6vh",
+		marginTop: "7vh",
+		marginLeft: "15vw",
 		display: "flex",
 		flexFlow: "row wrap",
 		alignItems: "flex-start",

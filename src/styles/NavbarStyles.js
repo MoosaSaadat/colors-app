@@ -8,7 +8,7 @@ export default {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "flex-start",
-		height: "7.5vh",
+		height: "7vh",
 		width: "85vw",
 		fontSize: "20px",
 		fontWeight: "bold",
