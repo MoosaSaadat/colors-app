@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import Logo from "./imgs/logo_r.png"
 import styles from "./styles/PaletteSidebarStyles";
 import "rc-slider/assets/index.css";
-import { FormControl, InputLabel, Slider, Typography } from '@material-ui/core';
+import { FormControl, FormLabel, InputLabel, Slider, Typography } from '@material-ui/core';
 
 class PaletteSidebar extends Component {
   constructor(props){
@@ -40,17 +40,18 @@ class PaletteSidebar extends Component {
         <img className={classes.SidebarLogo} src={Logo} alt="Color Palettes Logo" />
 
 				<FormControl className={classes.SelectContainer}>
-					<InputLabel shrink id="format-label">
-						Code Format
-					</InputLabel>
+					<FormLabel component="legend" id="format-label">
+						Code Format:
+					</FormLabel>
 					<Select
 						aria-labelledby="format-label"
 						className={classes.SelectField}
 						value={format}
-						onChange={this.handleFormatChange}>
-						<MenuItem value="hex">HEX - #FFFFFF</MenuItem>
-						<MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
-						<MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+						onChange={this.handleFormatChange}
+					>
+						<MenuItem value="hex">HEX</MenuItem>
+						<MenuItem value="rgb">RGB</MenuItem>
+						<MenuItem value="rgba">RGBA</MenuItem>
 					</Select>
 				</FormControl>
 
@@ -71,7 +72,7 @@ class PaletteSidebar extends Component {
 								rail: classes.SliderRail,
 							}}
 		        />
-						<Typography>
+						<Typography gutterBottom className={classes.SliderLabel}>
 							Shade: {level}
 						</Typography>
 					</div>

@@ -25,7 +25,10 @@ export default {
 		boxSizing: "border-box"
   },
 	SelectContainer: {
-		maxWidth: "80%",
+		width: "85%",
+		flexFlow: "row nowrap",
+		alignItems: "center",
+		justifyContent: "space-between",
 	},
 	SelectField: {
 		fontSize: "14px"
@@ -46,5 +49,10 @@ export default {
 	SliderThumb: {
 		width: "15px",
 		height: "15px",
+	},
+	SliderLabel: {
+		fontSize: "1rem",
+		color: "rgba(0, 0, 0, 0.54)",
+		marginTop: "2rem",
 	},
 };
