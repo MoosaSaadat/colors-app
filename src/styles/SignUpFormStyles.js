@@ -1,9 +1,13 @@
+import bg from '../imgs/bg_pattern.svg';
+
 export default (theme) => ({
   mainWrapper: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#FFFFFF",
-    // backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)",
+    backgroundColor: "#ffffff",
+    backgroundImage: `url(${bg})`,
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
     paddingTop: theme.spacing(2),
   },
   paper: {
