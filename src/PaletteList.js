@@ -105,12 +105,17 @@ class PaletteList extends Component {
           <nav className={classes.nav}>
             <h1 className={classes.title}>Saved Palettes</h1>
             {/* <Link to="/palette/new">New</Link> */}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.signOutUser}>
-              Sign Out
-            </Button>
+            <div className={classes.navBtns}>
+              <Button variant="contained" color="primary" href="/palette/new">
+                New
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={this.signOutUser}>
+                Sign Out
+              </Button>
+            </div>
           </nav>
           <TransitionGroup
             className={clsx(

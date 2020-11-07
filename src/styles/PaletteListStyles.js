@@ -41,21 +41,17 @@ export default {
     alignItems: "center",
     fontWeight: "normal",
     color: "black",
-    "& a": {
-      boxShadow: "1px 1px 3px #283441",
-      background: "#1b3191",
-      textDecoration: "none",
-      color: "white",
-      padding: "10px 20px",
-      border: "none",
-      borderRadius: "0px",
-      transition: "all 100ms ease-out",
-    },
-    "& a:hover": {
-      background: "#09215a",
-    },
     [sizes.down("sm")]: {
       textAlign: "center",
+    },
+  },
+  navBtns: {
+    width: "30%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    [sizes.down("md")]: {
+      width: "auto",
     },
   },
   palettes: {
@@ -63,12 +59,14 @@ export default {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(3, 32%)",
-    gridGap: "20px",
+    gridGap: "2%",
     [sizes.down("md")]: {
-      gridTemplateColumns: "repeat(2, 50%)",
+      gridTemplateColumns: "repeat(2, 47.5%)",
+      gridGap: "5%",
     },
     [sizes.down("sm")]: {
       gridTemplateColumns: "repeat(1, 100%)",
+      gridGap: "1%",
     },
   },
   emptyList: {
