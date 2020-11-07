@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Link as RouterLink } from "react-router-dom";
 import { fadeTransitionTime } from "./constants";
 import clsx from "clsx";
 import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -104,18 +105,19 @@ class PaletteList extends Component {
         <div className={classes.container}>
           <nav className={classes.nav}>
             <h1 className={classes.title}>Saved Palettes</h1>
-            {/* <Link to="/palette/new">New</Link> */}
-            <div className={classes.navBtns}>
-              <Button variant="contained" color="primary" href="/palette/new">
-                New
-              </Button>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={this.signOutUser}>
-                Sign Out
-              </Button>
-            </div>
+            <Link
+              className={classes.newBtn}
+              component={RouterLink}
+              color="primary"
+              to="/palette/new">
+              New
+            </Link>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={this.signOutUser}>
+              Sign Out
+            </Button>
           </nav>
           <TransitionGroup
             className={clsx(

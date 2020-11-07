@@ -8,6 +8,7 @@ function PrivateRoute({ authUser, ...rest }) {
   } else if (!authUser && currPath != "/signin" && currPath != "/signup") {
     return <Redirect to="/signin" />;
   }
+  console.log("Redirecting to ", authUser, currPath);
   return <Route {...rest} />;
 }
 

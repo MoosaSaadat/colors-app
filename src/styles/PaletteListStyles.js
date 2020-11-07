@@ -45,14 +45,8 @@ export default {
       textAlign: "center",
     },
   },
-  navBtns: {
-    width: "30%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    [sizes.down("md")]: {
-      width: "auto",
-    },
+  newBtn: {
+    margin: "0px 10px 0px auto",
   },
   palettes: {
     boxSizing: "border-box",

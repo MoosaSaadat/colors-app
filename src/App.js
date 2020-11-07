@@ -38,8 +38,6 @@ class App extends Component {
       } else {
         this.setState({ authUser: false });
       }
-      // this.setState({ authUser });
-      // console.log(authUser);
       console.log(this.state.authUser);
     });
   }
