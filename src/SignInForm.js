@@ -35,7 +35,9 @@ function SignInForm(props) {
     showSnackbar("Signing In...");
     event.preventDefault();
     console.log(email, password);
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => props.history.push('/'))
+    .catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorCode, errorMessage)

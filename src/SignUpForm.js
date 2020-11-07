@@ -17,6 +17,7 @@ import styles from './styles/SignInFormStyles';
 import firebase from 'firebase';
 import { IconButton, Snackbar, SnackbarContent } from '@material-ui/core';
 
+
 function SignUpForm(props) {
   const { classes } = props;
   const [email, setEmail] = useState("");
@@ -40,7 +41,9 @@ function SignUpForm(props) {
       showSnackbar("Passwords do not match!", true);
     }
     else {
-      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => props.history.push('/'))
+      .catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode, errorMessage)
