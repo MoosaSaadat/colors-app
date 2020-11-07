@@ -70,7 +70,7 @@ function SignInForm(props) {
             className={classes.form}
             onSubmit={(event) => handleSubmit(event)}>
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth
@@ -83,7 +83,7 @@ function SignInForm(props) {
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
-              variant="outlined"
+              variant="filled"
               margin="normal"
               required
               fullWidth

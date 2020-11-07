@@ -75,7 +75,7 @@ function SignUpForm(props) {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant="filled"
                   required
                   fullWidth
                   id="email"
@@ -89,7 +89,7 @@ function SignUpForm(props) {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant="filled"
                   required
                   fullWidth
                   name="password"
@@ -102,7 +102,7 @@ function SignUpForm(props) {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="outlined"
+                  variant="filled"
                   required
                   fullWidth
                   name="confirm-password"
