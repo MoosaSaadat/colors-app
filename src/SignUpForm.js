@@ -96,7 +96,6 @@ function SignUpForm(props) {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -110,7 +109,6 @@ function SignUpForm(props) {
                   label="Confirm Password"
                   type="password"
                   id="confirm-password"
-                  autoComplete="current-password"
                   value={confPass}
                   onChange={(e) => setConfPass(e.target.value)}
                 />

@@ -1,5 +1,6 @@
 import sizes from "../size";
 import { fadeTransitionTime } from "../constants";
+import bg from "../imgs/bg_pattern.svg";
 
 export default {
   "@global": {
@@ -12,11 +13,13 @@ export default {
     },
   },
   root: {
-    background: "blue",
     height: "100vh",
     overflow: "auto",
-    fontFamily: ["Handlee", "cursive"],
-    backgroundImage: "linear-gradient(-45deg, #30cfd0 0%, #330867 100%)",
+    // fontFamily: ["Handlee", "cursive"],
+    backgroundColor: "#ffffff",
+    backgroundImage: `url(${bg})`,
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
   },
   container: {
     width: "50%",
@@ -37,7 +40,7 @@ export default {
     justifyContent: "space-between",
     alignItems: "center",
     fontWeight: "normal",
-    color: "white",
+    color: "black",
     "& a": {
       boxShadow: "1px 1px 3px #283441",
       background: "#1b3191",
