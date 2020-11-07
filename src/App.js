@@ -7,6 +7,8 @@ import PaletteList from "./PaletteList";
 import Palette from "./Palette";
 import NewPaletteForm from "./NewPaletteForm";
 import SingleColorPalette from "./SingleColorPalette";
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 import seedColors from "./seedColors";
 import Page from "./Page";
 import "./App.css";
@@ -133,6 +135,24 @@ class App extends Component {
 											this.findPalette(routeProps.match.params.paletteId)
 										)}
 									/>
+								</Page>
+							)}
+						/>
+						<Route
+							exact
+							path="/signin"
+							render={(routeProps) => (
+								<Page>
+									<SignInForm />
+								</Page>
+							)}
+						/>
+						<Route
+							exact
+							path="/signup"
+							render={(routeProps) => (
+								<Page>
+									<SignUpForm />
 								</Page>
 							)}
 						/>

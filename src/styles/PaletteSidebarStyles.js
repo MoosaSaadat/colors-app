@@ -19,13 +19,12 @@ export default {
   SidebarLogo: {
     maxWidth: "100%",
     maxHeight: "auto",
-		padding: "15px",
 		marginBottom: "1rem",
 		boxSizing: "border-box"
   },
 	SelectContainer: {
 		width: "85%",
-		marginTop: "3rem",
+		marginBottom: "1rem",
 		flexFlow: "row nowrap",
 		alignItems: "center",
 		justifyContent: "space-between",
@@ -35,8 +34,7 @@ export default {
 	},
 	Slider: {
 		height: "40vh",
-		marginTop: "3rem",
-		marginBottom: "2rem",
+		marginBottom: "1rem",
 		display: "flex",
 		flexFlow: "column",
 		alignItems: "center"

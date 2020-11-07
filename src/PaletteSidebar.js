@@ -8,7 +8,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 // import Slider from "rc-slider";
-import Logo from "./imgs/logo_r.png"
+import Logo from "./imgs/new_logo.png"
 import styles from "./styles/PaletteSidebarStyles";
 import "rc-slider/assets/index.css";
 import { FormControl, FormLabel, InputLabel, Slider, Typography } from '@material-ui/core';

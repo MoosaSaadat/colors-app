@@ -95,6 +95,7 @@ class PaletteList extends Component {
 					<nav className={classes.nav}>
 						<h1 className={classes.title}>Saved Palettes</h1>
 						<Link to="/palette/new">New</Link>
+						<Link to="/auth">Auth</Link>
 					</nav>
 					<TransitionGroup
 						className={clsx(
