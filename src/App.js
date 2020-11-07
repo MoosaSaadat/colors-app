@@ -11,6 +11,8 @@ import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import seedColors from "./seedColors";
 import Page from "./Page";
+import firebaseConfig from './firebase-conf';
+import firebase from 'firebase';
 import "./App.css";
 
 class App extends Component {
@@ -23,6 +25,9 @@ class App extends Component {
 		this.savePalette = this.savePalette.bind(this);
 		this.deletePalette = this.deletePalette.bind(this);
 		this.restorePalettes = this.restorePalettes.bind(this);
+
+		// Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
 	}
 	findPalette (id) {
 		return this.state.palettes.find((palette) => palette.id === id);
@@ -143,7 +148,7 @@ class App extends Component {
 							path="/signin"
 							render={(routeProps) => (
 								<Page>
-									<SignInForm />
+									<SignInForm {...routeProps} />
 								</Page>
 							)}
 						/>
@@ -152,7 +157,7 @@ class App extends Component {
 							path="/signup"
 							render={(routeProps) => (
 								<Page>
-									<SignUpForm />
+									<SignUpForm {...routeProps} />
 								</Page>
 							)}
 						/>
