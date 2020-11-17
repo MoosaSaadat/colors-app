@@ -122,7 +122,7 @@ function SignInForm(props) {
         autoHideDuration={5000}
         onClose={handleClose}>
         <SnackbarContent
-          classes={isError && { root: classes.snackbar }}
+          classes={isError ? { root: classes.snackbar } : {}}
           message={snackMsg}
           action={
             <IconButton
