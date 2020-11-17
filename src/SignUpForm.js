@@ -41,8 +41,25 @@ function SignUpForm(props) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => props.history.push("/"))
-        .catch(function (error) {
+        .then(() => {
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(email)
+            .set({
+              saved: [],
+              liked: [],
+            })
+            .then(() => {
+              props.history.push("/");
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              showSnackbar(errorMessage, true);
+            });
+        })
+        .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
           showSnackbar(errorMessage, true);
