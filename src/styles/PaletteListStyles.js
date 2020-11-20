@@ -3,25 +3,8 @@ import { fadeTransitionTime } from "../constants";
 import bg from "../imgs/bg_pattern.svg";
 
 export default {
-  "@global": {
-    ".fade-exit": {
-      opacity: "1",
-    },
-    ".fade-exit-active": {
-      opacity: "0",
-      transition: `opacity ${fadeTransitionTime}ms ease-out`,
-    },
-  },
-  root: {
-    height: "100vh",
-    overflow: "auto",
-    backgroundColor: "#ffffff",
-    backgroundImage: `url(${bg})`,
-    backgroundAttachment: "fixed",
-    backgroundSize: "cover",
-  },
   container: {
-    width: "50%",
+    width: "60%",
     margin: "10px auto 50px auto",
     [sizes.down("lg")]: {
       width: "60%",
@@ -34,7 +17,7 @@ export default {
     },
   },
   nav: {
-    width: "100%",
+    width: "70%",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",

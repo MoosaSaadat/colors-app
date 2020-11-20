@@ -1,6 +1,6 @@
 export default (theme) => ({
   root: {
-    background: "#313131",
+    background: "#303030",
     padding: "0.5rem",
     position: "relative",
     overflow: "hidden",
@@ -11,7 +11,7 @@ export default (theme) => ({
     },
   },
   colors: {
-    background: "#313131",
+    background: "#303030",
     width: "100%",
     height: "150px",
     display: "flex",

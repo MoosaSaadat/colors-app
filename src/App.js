@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 import firebaseConfig from "./firebase-conf";
 import firebase from "firebase";
 import "./App.css";
+import HomePage from "./HomePage";
 
 class App extends Component {
   constructor(props) {
@@ -221,7 +222,13 @@ class App extends Component {
               authUser={this.state.authUser}
               render={(routeProps) => (
                 <Page>
-                  <PaletteList
+                  {/* <PaletteList
+                    palettes={this.state.palettes}
+                    {...routeProps}
+                    deletePalette={this.deletePalette}
+                    restorePalettes={this.restorePalettes}
+                  /> */}
+                  <HomePage
                     palettes={this.state.palettes}
                     {...routeProps}
                     deletePalette={this.deletePalette}

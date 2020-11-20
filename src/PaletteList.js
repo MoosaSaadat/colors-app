@@ -91,9 +91,9 @@ class PaletteList extends Component {
       );
     }
     return (
-      <div className={classes.root}>
+      <div>
         <div className={classes.container}>
-          <nav className={classes.nav}>
+          {/* <nav className={classes.nav}>
             <h1 className={classes.title}>Saved Palettes</h1>
             <Link
               className={classes.newBtn}
@@ -108,7 +108,7 @@ class PaletteList extends Component {
               onClick={this.signOutUser}>
               Sign Out
             </Button>
-          </nav>
+          </nav> */}
           <TransitionGroup
             className={clsx(
               { [classes.palettes]: !noPalettes },
