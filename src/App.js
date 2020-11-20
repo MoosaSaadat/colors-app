@@ -86,17 +86,12 @@ class App extends Component {
     );
   }
   deletePalette(id) {
-    this.setState(
-      (currState) => ({
-        palettes: currState.palettes.filter((palette) => palette.id !== id),
-      }),
-      this.syncLocalStorage
-    );
+    this.removeFromDB(id);
   }
-  restorePalettes() {
-    window.localStorage.clear();
-    this.setState({ palettes: seedColors });
-  }
+  // restorePalettes() {
+  //   window.localStorage.clear();
+  //   this.setState({ palettes: seedColors });
+  // }
   removeFromDB(editPaletteId) {
     let docID = `${this.state.userEmail}~${editPaletteId}`;
     firebase
