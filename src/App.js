@@ -26,7 +26,7 @@ class App extends Component {
     };
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
-    this.restorePalettes = this.restorePalettes.bind(this);
+    // this.restorePalettes = this.restorePalettes.bind(this);
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
