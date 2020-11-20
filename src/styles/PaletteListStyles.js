@@ -68,9 +68,8 @@ export default {
     display: "flex",
     flexFlow: "column wrap",
     boxSizing: "border-box",
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.09)",
     boxShadow: "1px 1px 3px #283441",
-    color: "white",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -82,7 +81,6 @@ export default {
     transform: "rotate(90deg)",
   },
   msg: {
-    color: "white",
     textAlign: "center",
     fontSize: "1.5rem",
     "& .new": {

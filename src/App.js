@@ -27,6 +27,9 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     // this.restorePalettes = this.restorePalettes.bind(this);
+    this.getSavedPalettes = this.getSavedPalettes.bind(this);
+    this.getLatestPalettes = this.getLatestPalettes.bind(this);
+    this.getTrendingPalettes = this.getTrendingPalettes.bind(this);
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -36,25 +39,56 @@ class App extends Component {
     firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
         this.setState({ authUser: true, userEmail: authUser.email });
-        // Check Palettes Changes
-        firebase
-          .firestore()
-          .collection("palettes")
-          .where("creator", "==", this.state.userEmail)
-          .onSnapshot((querySnapshot) => {
-            let savedPalettes = [];
-            querySnapshot.forEach((doc) => {
-              savedPalettes.push(doc.data());
-            });
-            console.log(savedPalettes);
-            this.setState({
-              palettes: savedPalettes,
-            });
-          });
+        this.getSavedPalettes();
       } else {
         this.setState({ authUser: false, userEmail: null });
       }
     });
+  }
+  getSavedPalettes() {
+    firebase
+      .firestore()
+      .collection("palettes")
+      .where("creator", "==", this.state.userEmail)
+      .onSnapshot((querySnapshot) => {
+        let palettes = [];
+        querySnapshot.forEach((doc) => {
+          palettes.push(doc.data());
+        });
+        console.log(palettes);
+        this.setState({ palettes });
+      });
+  }
+  getLatestPalettes() {
+    firebase
+      .firestore()
+      .collection("palettes")
+      .where("creator", "!=", this.state.userEmail)
+      .orderBy("timestamp", "desc")
+      .get()
+      .then((querySnapshot) => {
+        let palettes = [];
+        querySnapshot.forEach((doc) => {
+          palettes.push(doc.data());
+        });
+        console.log(palettes);
+        this.setState({ palettes });
+      });
+  }
+  getTrendingPalettes() {
+    firebase
+      .firestore()
+      .collection("palettes")
+      .orderBy("likes", "desc")
+      .get()
+      .then((querySnapshot) => {
+        let palettes = [];
+        querySnapshot.forEach((doc) => {
+          palettes.push(doc.data());
+        });
+        console.log(palettes);
+        this.setState({ palettes });
+      });
   }
   findPalette(id) {
     return this.state.palettes.find((palette) => palette.id === id);

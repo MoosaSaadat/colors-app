@@ -60,7 +60,7 @@ class PaletteList extends Component {
       .then(() => this.props.history.push("/signin"));
   }
   render() {
-    const { palettes, classes, restorePalettes } = this.props;
+    const { palettes, classes } = this.props;
     const { openDialog } = this.state;
     let palettesList = palettes.map((palette) => (
       <CSSTransition
@@ -84,18 +84,8 @@ class PaletteList extends Component {
             <h2>Oops, You have no Palettes saved!</h2>
             <p>
               Click on <span className="new">New</span> button above to make a
-              new Palette
-              <br />
-              OR
-              <br />
-              Click on the following button to restore default palettes!
+              new Palette or explore palettes from other users
             </p>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={restorePalettes}>
-              Restore?
-            </Button>
           </div>
         </CSSTransition>
       );
