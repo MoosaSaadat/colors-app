@@ -15,7 +15,6 @@ export default {
   root: {
     height: "100vh",
     overflow: "auto",
-    // fontFamily: ["Handlee", "cursive"],
     backgroundColor: "#ffffff",
     backgroundImage: `url(${bg})`,
     backgroundAttachment: "fixed",

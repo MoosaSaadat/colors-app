@@ -19,9 +19,8 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     this.state = {
-      palettes: savedPalettes || seedColors,
+      palettes: [],
       authUser: false,
       userEmail: null,
     };
@@ -33,9 +32,25 @@ class App extends Component {
     firebase.initializeApp(firebaseConfig);
   }
   componentDidMount() {
+    // Check User Auth Changes
     firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
         this.setState({ authUser: true, userEmail: authUser.email });
+        // Check Palettes Changes
+        firebase
+          .firestore()
+          .collection("palettes")
+          .where("creator", "==", this.state.userEmail)
+          .onSnapshot((querySnapshot) => {
+            let savedPalettes = [];
+            querySnapshot.forEach((doc) => {
+              savedPalettes.push(doc.data());
+            });
+            console.log(savedPalettes);
+            this.setState({
+              palettes: savedPalettes,
+            });
+          });
       } else {
         this.setState({ authUser: false, userEmail: null });
       }
