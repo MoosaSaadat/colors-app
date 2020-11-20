@@ -45,7 +45,7 @@ class App extends Component {
     return this.state.palettes.find((palette) => palette.id === id);
   }
   savePalette(newPalette, editPaletteId) {
-    console.log(newPalette, editPaletteId);
+    // console.log(newPalette, editPaletteId);
     let timestamp = Date.now();
     newPalette = {
       ...newPalette,
@@ -61,8 +61,8 @@ class App extends Component {
         return palette;
       });
     }
-    console.log(newPaletteList);
-    console.log(this.state.userEmail);
+    // console.log(newPaletteList);
+    // console.log(this.state.userEmail);
     this.setState(
       (state) => {
         return { palettes: newPaletteList };
@@ -81,12 +81,6 @@ class App extends Component {
   restorePalettes() {
     window.localStorage.clear();
     this.setState({ palettes: seedColors });
-  }
-  syncLocalStorage() {
-    window.localStorage.setItem(
-      "palettes",
-      JSON.stringify(this.state.palettes)
-    );
   }
   removeFromDB(editPaletteId) {
     let docID = `${this.state.userEmail}~${editPaletteId}`;
