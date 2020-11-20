@@ -23,6 +23,7 @@ class App extends Component {
     this.state = {
       palettes: savedPalettes || seedColors,
       authUser: false,
+      userEmail: null,
     };
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
@@ -34,11 +35,10 @@ class App extends Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
-        this.setState({ authUser: true });
+        this.setState({ authUser: true, userEmail: authUser.email });
       } else {
-        this.setState({ authUser: false });
+        this.setState({ authUser: false, userEmail: null });
       }
-      console.log(this.state.authUser);
     });
   }
   findPalette(id) {
@@ -46,17 +46,29 @@ class App extends Component {
   }
   savePalette(newPalette, editPaletteId) {
     console.log(newPalette, editPaletteId);
+    let timestamp = Date.now();
+    newPalette = {
+      ...newPalette,
+      timestamp: timestamp,
+      creator: this.state.userEmail,
+      likes: 0,
+    };
     let newPaletteList = [...this.state.palettes, newPalette];
     if (editPaletteId !== "" && editPaletteId !== undefined) {
       newPaletteList = this.state.palettes.map((palette) => {
-        if (editPaletteId === palette.id) return newPalette;
+        if (editPaletteId === palette.id)
+          return { ...newPalette, likes: palette.likes };
         return palette;
       });
     }
     console.log(newPaletteList);
-    this.setState((state) => {
-      return { palettes: newPaletteList };
-    }, this.syncLocalStorage);
+    console.log(this.state.userEmail);
+    this.setState(
+      (state) => {
+        return { palettes: newPaletteList };
+      },
+      () => this.addToDB(newPalette, editPaletteId)
+    );
   }
   deletePalette(id) {
     this.setState(
@@ -75,6 +87,55 @@ class App extends Component {
       "palettes",
       JSON.stringify(this.state.palettes)
     );
+  }
+  removeFromDB(editPaletteId) {
+    let docID = `${this.state.userEmail}~${editPaletteId}`;
+    firebase
+      .firestore()
+      .collection("palettes")
+      .doc(docID)
+      .delete()
+      .then(() => {
+        // Update User Collection
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.state.userEmail)
+          .update({
+            saved: firebase.firestore.FieldValue.arrayRemove(docID),
+          })
+          .catch((error) => alert(error.message));
+      })
+      .catch((error) => alert(error.message));
+  }
+  addToDB(palette, editPaletteId) {
+    let docID = `${this.state.userEmail}~${palette.id}`;
+    // Update Palette Collection
+    firebase
+      .firestore()
+      .collection("palettes")
+      .doc(docID)
+      .set(palette)
+      .then(() => {
+        // Update User Collection
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.state.userEmail)
+          .update({
+            saved: firebase.firestore.FieldValue.arrayUnion(docID),
+          })
+          .catch((error) => alert(error.message));
+      })
+      .catch((error) => alert(error.message));
+    // Remove Previous ID
+    if (
+      editPaletteId !== "" &&
+      editPaletteId !== undefined &&
+      editPaletteId != palette.id
+    ) {
+      this.removeFromDB(editPaletteId);
+    }
   }
   render() {
     const { location } = this.props;
