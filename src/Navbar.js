@@ -12,7 +12,7 @@ class Navbar extends Component {
     super(props);
   }
   render() {
-    const { name, creator, likes, classes } = this.props;
+    const { name, creator, likes, isSinglePalette, classes } = this.props;
     return (
       <nav className={classes.Navbar}>
         <div className={classes.BackButton}>
@@ -21,13 +21,15 @@ class Navbar extends Component {
           </Link>
         </div>
         {name}
-        <span className={classes.CreatorName}>by {creator}</span>
-        <div className={classes.LikeButton}>
-          <Link to="/" className={classes.LikeLink}>
-            <FavoriteBorderIcon className={classes.LikeIcon} />
-          </Link>
-          <span className={classes.LikeCount}>{likes}</span>
-        </div>
+        <span className={classes.CreatorName}>by {creator.split("@")[0]}</span>
+        {isSinglePalette && (
+          <div className={classes.LikeButton}>
+            <Link to="/" className={classes.LikeLink}>
+              <FavoriteBorderIcon className={classes.LikeIcon} />
+            </Link>
+            <span className={classes.LikeCount}>{likes}</span>
+          </div>
+        )}
       </nav>
     );
   }

@@ -37,11 +37,7 @@ class Palette extends Component {
     ));
     return (
       <div>
-        <Navbar
-          name={paletteName}
-          creator={creator.split("@")[0]}
-          likes={likes}
-        />
+        <Navbar name={paletteName} creator={creator} likes={likes} />
         <PaletteSidebar
           level={this.state.level}
           changeLevel={this.changeLevel}
