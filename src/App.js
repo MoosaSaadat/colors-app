@@ -25,15 +25,11 @@ class App extends Component {
       authUser: false,
       userEmail: null,
       isLoadingPalettes: true,
+      currView: "home",
     };
     this.likePalette = this.likePalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
-    // this.restorePalettes = this.restorePalettes.bind(this);
-    // this.getLikedPalettes = this.getLikedPalettes.bind(this);
-    // this.getSavedPalettes = this.getSavedPalettes.bind(this);
-    // this.getLatestPalettes = this.getLatestPalettes.bind(this);
-    // this.getTrendingPalettes = this.getTrendingPalettes.bind(this);
     this.changePalettesView = this.changePalettesView.bind(this);
 
     // Initialize Firebase
@@ -51,14 +47,19 @@ class App extends Component {
     });
   }
   changePalettesView(viewName) {
-    if (viewName === "home") {
+    let cv = this.state.currView;
+    if (viewName === "home" && cv !== "home") {
       this.getSavedPalettes();
-    } else if (viewName === "likes") {
+      this.setState({ currView: "home" });
+    } else if (viewName === "likes" && cv !== "likes") {
       this.getLikedPalettes();
-    } else if (viewName === "latest") {
+      this.setState({ currView: "likes" });
+    } else if (viewName === "latest" && cv !== "latest") {
       this.getLatestPalettes();
-    } else if (viewName === "popular") {
+      this.setState({ currView: "latest" });
+    } else if (viewName === "popular" && cv !== "popular") {
       this.getTrendingPalettes();
+      this.setState({ currView: "popular" });
     }
   }
   getSavedPalettes() {
@@ -216,10 +217,6 @@ class App extends Component {
   deletePalette(id) {
     this.removeFromDB(id);
   }
-  // restorePalettes() {
-  //   window.localStorage.clear();
-  //   this.setState({ palettes: seedColors });
-  // }
   removeFromDB(editPaletteId) {
     let docID = `${this.state.userEmail}~${editPaletteId}`;
     firebase
@@ -317,12 +314,12 @@ class App extends Component {
                 <Page>
                   <HomePage
                     palettes={this.state.palettes}
+                    currView={this.state.currView}
+                    isLoadingPalettes={this.state.isLoadingPalettes}
                     {...routeProps}
                     likePalette={this.likePalette}
                     deletePalette={this.deletePalette}
                     changePalettesView={this.changePalettesView}
-                    restorePalettes={this.restorePalettes}
-                    isLoadingPalettes={this.state.isLoadingPalettes}
                   />
                 </Page>
               )}

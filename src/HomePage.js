@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import Logo from "./imgs/new_logo.png";
 import styles from "./styles/HomePageStyles";
 import {
@@ -31,7 +32,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { classes, changePalettesView } = this.props;
+    const { classes, changePalettesView, currView, ...other } = this.props;
     return (
       <div className={classes.root}>
         <nav className={classes.Sidebar}>
@@ -43,25 +44,33 @@ class HomePage extends Component {
           <div className={classes.Tabs}>
             <div
               onClick={() => changePalettesView("home")}
-              className={classes.Tab}>
+              className={clsx(classes.Tab, {
+                [classes.ActiveTab]: currView === "home",
+              })}>
               <HomeOutlined className={classes.TabIcon} />
               Home
             </div>
             <div
               onClick={() => changePalettesView("likes")}
-              className={classes.Tab}>
+              className={clsx(classes.Tab, {
+                [classes.ActiveTab]: currView === "likes",
+              })}>
               <FavoriteBorderOutlined className={classes.TabIcon} />
               Likes
             </div>
             <div
               onClick={() => changePalettesView("latest")}
-              className={classes.Tab}>
+              className={clsx(classes.Tab, {
+                [classes.ActiveTab]: currView === "latest",
+              })}>
               <ColorLensOutlined className={classes.TabIcon} />
               Latest
             </div>
             <div
               onClick={() => changePalettesView("popular")}
-              className={classes.Tab}>
+              className={clsx(classes.Tab, {
+                [classes.ActiveTab]: currView === "popular",
+              })}>
               <ShowChartOutlined className={classes.TabIcon} />
               Popular
             </div>
@@ -73,14 +82,7 @@ class HomePage extends Component {
             </div>
           </div>
         </nav>
-        <PaletteList
-          palettes={this.props.palettes}
-          {...this.props.routeProps}
-          likePalette={this.props.likePalette}
-          deletePalette={this.props.deletePalette}
-          restorePalettes={this.props.restorePalettes}
-          isLoadingPalettes={this.props.isLoadingPalettes}
-        />
+        <PaletteList {...other} />
         <Fab
           className={classes.AddBtn}
           color="secondary"

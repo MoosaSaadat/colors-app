@@ -84,6 +84,15 @@ export default {
       transition: "0.2s ease-in-out",
     },
   },
+  ActiveTab: {
+    color: "white",
+    "&:before": {
+      height: "101%",
+      width: "100%",
+      zIndex: "-1",
+      marginLeft: "0",
+    },
+  },
   InverseTab: {
     backgroundColor: "#f50057",
     color: "white",
