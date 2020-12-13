@@ -22,7 +22,7 @@ class Navbar extends Component {
         </div>
         {name}
         <span className={classes.CreatorName}>by {creator.split("@")[0]}</span>
-        {isSinglePalette && (
+        {!isSinglePalette && (
           <div className={classes.LikeButton}>
             <Link to="/" className={classes.LikeLink}>
               <FavoriteBorderIcon className={classes.LikeIcon} />
