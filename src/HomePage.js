@@ -31,7 +31,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, changePalettesView } = this.props;
     return (
       <div className={classes.root}>
         <nav className={classes.Sidebar}>
@@ -41,19 +41,27 @@ class HomePage extends Component {
             alt="Color Palettes Logo"
           />
           <div className={classes.Tabs}>
-            <div className={classes.Tab}>
+            <div
+              onClick={() => changePalettesView("home")}
+              className={classes.Tab}>
               <HomeOutlined className={classes.TabIcon} />
               Home
             </div>
-            <div className={classes.Tab}>
+            <div
+              onClick={() => changePalettesView("likes")}
+              className={classes.Tab}>
               <FavoriteBorderOutlined className={classes.TabIcon} />
               Likes
             </div>
-            <div className={classes.Tab}>
+            <div
+              onClick={() => changePalettesView("latest")}
+              className={classes.Tab}>
               <ColorLensOutlined className={classes.TabIcon} />
               Latest
             </div>
-            <div className={classes.Tab}>
+            <div
+              onClick={() => changePalettesView("popular")}
+              className={classes.Tab}>
               <ShowChartOutlined className={classes.TabIcon} />
               Popular
             </div>

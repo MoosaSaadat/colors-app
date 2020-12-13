@@ -30,10 +30,11 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     // this.restorePalettes = this.restorePalettes.bind(this);
-    this.getLikedPalettes = this.getLikedPalettes.bind(this);
-    this.getSavedPalettes = this.getSavedPalettes.bind(this);
-    this.getLatestPalettes = this.getLatestPalettes.bind(this);
-    this.getTrendingPalettes = this.getTrendingPalettes.bind(this);
+    // this.getLikedPalettes = this.getLikedPalettes.bind(this);
+    // this.getSavedPalettes = this.getSavedPalettes.bind(this);
+    // this.getLatestPalettes = this.getLatestPalettes.bind(this);
+    // this.getTrendingPalettes = this.getTrendingPalettes.bind(this);
+    this.changePalettesView = this.changePalettesView.bind(this);
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -48,6 +49,17 @@ class App extends Component {
         this.setState({ authUser: false, userEmail: null });
       }
     });
+  }
+  changePalettesView(viewName) {
+    if (viewName === "home") {
+      this.getSavedPalettes();
+    } else if (viewName === "likes") {
+      this.getLikedPalettes();
+    } else if (viewName === "latest") {
+      this.getLatestPalettes();
+    } else if (viewName === "popular") {
+      this.getTrendingPalettes();
+    }
   }
   getSavedPalettes() {
     this.setState({ isLoadingPalettes: true });
@@ -70,13 +82,13 @@ class App extends Component {
     firebase
       .firestore()
       .collection("palettes")
-      .where("creator", "!=", this.state.userEmail)
       .orderBy("timestamp", "desc")
       .get()
       .then((querySnapshot) => {
         let latestPalettes = [];
         querySnapshot.forEach((doc) => {
-          latestPalettes.push(doc.data());
+          if (doc.data().creator !== this.state.userEmail)
+            latestPalettes.push(doc.data());
         });
         console.log(latestPalettes);
         this.setState({ palettes: latestPalettes, isLoadingPalettes: false });
@@ -92,7 +104,7 @@ class App extends Component {
       .then((querySnapshot) => {
         let trendingPalettes = [];
         querySnapshot.forEach((doc) => {
-          trendingPalettes.push(doc.data());
+          if (doc.data().likes > 0) trendingPalettes.push(doc.data());
         });
         console.log(trendingPalettes);
         this.setState({ palettes: trendingPalettes, isLoadingPalettes: false });
@@ -308,6 +320,7 @@ class App extends Component {
                     {...routeProps}
                     likePalette={this.likePalette}
                     deletePalette={this.deletePalette}
+                    changePalettesView={this.changePalettesView}
                     restorePalettes={this.restorePalettes}
                     isLoadingPalettes={this.state.isLoadingPalettes}
                   />
