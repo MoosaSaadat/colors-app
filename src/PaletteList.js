@@ -81,16 +81,14 @@ class PaletteList extends Component {
       );
     }
     return (
-      <div>
-        <div className={classes.container}>
-          <TransitionGroup
-            className={clsx(
-              { [classes.palettes]: !noPalettes },
-              { [classes.emptyList]: noPalettes }
-            )}>
-            {palettesList}
-          </TransitionGroup>
-        </div>
+      <div className={classes.container}>
+        <TransitionGroup
+          className={clsx({
+            [classes.palettes]: !noPalettes,
+            [classes.emptyList]: noPalettes,
+          })}>
+          {palettesList}
+        </TransitionGroup>
         <Dialog
           open={openDialog}
           aria-labelledby="delete-dialog"

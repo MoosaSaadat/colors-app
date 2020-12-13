@@ -4,7 +4,10 @@ export default (theme) => ({
     padding: "0.5rem",
     position: "relative",
     overflow: "hidden",
+    width: "250px",
+    height: "200px",
     cursor: "pointer",
+    margin: "1rem 2rem",
     boxShadow: "1px 1px 3px #283441",
     "&:hover svg": {
       opacity: "1",

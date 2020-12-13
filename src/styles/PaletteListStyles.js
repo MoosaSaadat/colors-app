@@ -4,46 +4,14 @@ import bg from "../imgs/bg_pattern.svg";
 
 export default {
   container: {
-    width: "60%",
-    margin: "10px auto 50px auto",
-    [sizes.down("lg")]: {
-      width: "60%",
-    },
-    [sizes.down("sm")]: {
-      width: "40%",
-    },
-    [sizes.down("xs")]: {
-      width: "50%",
-    },
-  },
-  nav: {
-    width: "70%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    fontWeight: "normal",
-    color: "black",
-    [sizes.down("sm")]: {
-      textAlign: "center",
-    },
-  },
-  newBtn: {
-    margin: "0px 10px 0px auto",
+    width: "100%",
+    margin: "5vh auto 10vh auto",
   },
   palettes: {
-    boxSizing: "border-box",
     width: "100%",
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 32%)",
-    gridGap: "2%",
-    [sizes.down("md")]: {
-      gridTemplateColumns: "repeat(2, 47.5%)",
-      gridGap: "5%",
-    },
-    [sizes.down("sm")]: {
-      gridTemplateColumns: "repeat(1, 100%)",
-      gridGap: "1%",
-    },
+    display: "flex",
+    flexFlow: "row wrap",
+    justifyContent: "center",
   },
   emptyList: {
     width: "100%",
