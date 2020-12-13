@@ -84,8 +84,23 @@ export default {
       transition: "0.2s ease-in-out",
     },
   },
+  InverseTab: {
+    backgroundColor: "#f50057",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#c51162",
+    },
+    "&:before": {
+      backgroundColor: "#f50057",
+    },
+  },
   TabIcon: {
     marginRight: "1rem",
     fontSize: "2rem",
+  },
+  AddBtn: {
+    position: "absolute",
+    right: "5vw",
+    bottom: "5vh",
   },
 };

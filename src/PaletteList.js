@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Link as RouterLink } from "react-router-dom";
 import { fadeTransitionTime } from "./constants";
 import clsx from "clsx";
 import Avatar from "@material-ui/core/Avatar";
-import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -19,7 +17,6 @@ import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import MiniPalette from "./MiniPalette";
 import styles from "./styles/PaletteListStyles";
-import firebase from "firebase";
 
 class PaletteList extends Component {
   constructor(props) {
@@ -32,7 +29,6 @@ class PaletteList extends Component {
     this.closeDialog = this.closeDialog.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.goToPalette = this.goToPalette.bind(this);
-    this.signOutUser = this.signOutUser.bind(this);
   }
   openDialog(id) {
     this.setState({
@@ -52,12 +48,6 @@ class PaletteList extends Component {
   handleDelete() {
     this.props.deletePalette(this.state.deleteId);
     this.closeDialog();
-  }
-  signOutUser() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => this.props.history.push("/signin"));
   }
   render() {
     const { palettes, classes } = this.props;
@@ -93,22 +83,6 @@ class PaletteList extends Component {
     return (
       <div>
         <div className={classes.container}>
-          {/* <nav className={classes.nav}>
-            <h1 className={classes.title}>Saved Palettes</h1>
-            <Link
-              className={classes.newBtn}
-              component={RouterLink}
-              color="primary"
-              to="/palette/new">
-              New
-            </Link>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={this.signOutUser}>
-              Sign Out
-            </Button>
-          </nav> */}
           <TransitionGroup
             className={clsx(
               { [classes.palettes]: !noPalettes },

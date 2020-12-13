@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
+import { Link } from "react-router-dom";
 import Logo from "./imgs/new_logo.png";
 import styles from "./styles/HomePageStyles";
 import {
@@ -7,8 +8,12 @@ import {
   HomeOutlined,
   ColorLensOutlined,
   ShowChartOutlined,
+  KeyboardReturnOutlined,
+  Add,
 } from "@material-ui/icons";
 import PaletteList from "./PaletteList";
+import { Fab } from "@material-ui/core";
+import firebase from "firebase";
 
 class HomePage extends Component {
   constructor(props) {
@@ -16,6 +21,13 @@ class HomePage extends Component {
     this.state = {
       something: true,
     };
+    this.signOutUser = this.signOutUser.bind(this);
+  }
+  signOutUser() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => this.props.history.push("/signin"));
   }
 
   render() {
@@ -45,9 +57,22 @@ class HomePage extends Component {
               <ShowChartOutlined className={classes.TabIcon} />
               Popular
             </div>
+            <div
+              className={`${classes.Tab} ${classes.InverseTab}`}
+              onClick={this.signOutUser}>
+              <KeyboardReturnOutlined className={classes.TabIcon} />
+              Sign Out
+            </div>
           </div>
         </nav>
         <PaletteList {...this.props} />
+        <Fab
+          className={classes.AddBtn}
+          color="secondary"
+          component={Link}
+          to="/palette/new">
+          <Add />
+        </Fab>
       </div>
     );
   }

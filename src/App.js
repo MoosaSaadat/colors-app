@@ -28,6 +28,7 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     // this.restorePalettes = this.restorePalettes.bind(this);
+    this.getLikedPalettes = this.getLikedPalettes.bind(this);
     this.getSavedPalettes = this.getSavedPalettes.bind(this);
     this.getLatestPalettes = this.getLatestPalettes.bind(this);
     this.getTrendingPalettes = this.getTrendingPalettes.bind(this);
@@ -41,6 +42,7 @@ class App extends Component {
       if (authUser) {
         this.setState({ authUser: true, userEmail: authUser.email });
         this.getSavedPalettes();
+        this.getLikedPalettes();
       } else {
         this.setState({ authUser: false, userEmail: null });
       }
@@ -90,6 +92,40 @@ class App extends Component {
         console.log(palettes);
         this.setState({ palettes });
       });
+  }
+  getLikedPalettes() {
+    let paletteIds = [];
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.userEmail)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          paletteIds = doc.data().liked;
+        } else {
+          alert("Not Found!");
+        }
+      });
+    let paletteList = [];
+    paletteIds.forEach((docId) => {
+      firebase
+        .firestore()
+        .collection("palettes")
+        .doc(docId)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            paletteList.push(doc.data());
+          } else {
+            alert("Not Found!");
+          }
+        });
+    });
+    this.setState({
+      palettes: paletteList,
+    });
+    console.log(this.state.palettes);
   }
   findPalette(id) {
     return this.state.palettes.find((palette) => palette.id === id);
