@@ -258,12 +258,6 @@ class App extends Component {
               authUser={this.state.authUser}
               render={(routeProps) => (
                 <Page>
-                  {/* <PaletteList
-                    palettes={this.state.palettes}
-                    {...routeProps}
-                    deletePalette={this.deletePalette}
-                    restorePalettes={this.restorePalettes}
-                  /> */}
                   <HomePage
                     palettes={this.state.palettes}
                     {...routeProps}

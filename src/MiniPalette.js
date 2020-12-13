@@ -24,7 +24,7 @@ class MiniPalette extends PureComponent {
     this.props.handleClick(this.props.id);
   }
   render() {
-    const { classes, paletteName, emoji, colors } = this.props;
+    const { classes, paletteName, creator, likes, colors } = this.props;
     const colorsList = colors.map((color) => (
       <div
         className={classes.miniColorBox}
@@ -45,11 +45,11 @@ class MiniPalette extends PureComponent {
         <div className={classes.metaInfoContainer}>
           <div className={classes.metaInfo}>
             <span className={classes.title}>{paletteName}</span>
-            <span className={classes.creator}>{"by Moosa"}</span>
+            <span className={classes.creator}>by {creator.split("@")[0]}</span>
           </div>
           <div className={classes.likesInfo}>
             <FavoriteBorderIcon className={classes.likeBtn} />
-            <span className={classes.likeCount}>{"99"}</span>
+            <span className={classes.likeCount}>{likes}</span>
           </div>
         </div>
       </div>
