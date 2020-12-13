@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import styles from "./styles/MiniPaletteStyles";
 
 class MiniPalette extends PureComponent {
@@ -24,7 +25,14 @@ class MiniPalette extends PureComponent {
     this.props.handleClick(this.props.id);
   }
   render() {
-    const { classes, paletteName, creator, likes, colors } = this.props;
+    const {
+      classes,
+      paletteName,
+      creator,
+      likes,
+      colors,
+      isLiked,
+    } = this.props;
     const colorsList = colors.map((color) => (
       <div
         className={classes.miniColorBox}
@@ -48,7 +56,11 @@ class MiniPalette extends PureComponent {
             <span className={classes.creator}>by {creator.split("@")[0]}</span>
           </div>
           <div className={classes.likesInfo}>
-            <FavoriteBorderIcon className={classes.likeBtn} />
+            {isLiked ? (
+              <FavoriteIcon color="secondary" className={classes.likeBtn} />
+            ) : (
+              <FavoriteBorderIcon className={classes.likeBtn} />
+            )}
             <span className={classes.likeCount}>{likes}</span>
           </div>
         </div>

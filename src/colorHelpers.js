@@ -8,6 +8,7 @@ function generatePalette(starterPalette) {
     likes: starterPalette.likes,
     id: starterPalette.id,
     timestamp: starterPalette.timestamp,
+    isLiked: starterPalette.isLiked,
     colors: {},
   };
   for (let level of levels) {

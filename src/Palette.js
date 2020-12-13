@@ -24,7 +24,14 @@ class Palette extends Component {
   }
   render() {
     const { classes, likePalette } = this.props;
-    const { colors, paletteName, creator, likes, id } = this.props.palette;
+    const {
+      colors,
+      paletteName,
+      creator,
+      likes,
+      id,
+      isLiked,
+    } = this.props.palette;
     console.log(this.props.palette);
     const colorBoxes = colors[this.state.level].map((color) => (
       <ColorBox
@@ -43,6 +50,7 @@ class Palette extends Component {
           creator={creator}
           likes={likes}
           likePalette={likePalette}
+          isLiked={isLiked}
         />
         <PaletteSidebar
           level={this.state.level}

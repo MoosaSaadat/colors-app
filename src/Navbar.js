@@ -17,7 +17,15 @@ class Navbar extends Component {
     this.props.likePalette(this.props.id);
   }
   render() {
-    const { name, creator, likes, isSinglePalette, classes } = this.props;
+    const {
+      name,
+      creator,
+      likes,
+      isLiked,
+      isSinglePalette,
+      classes,
+    } = this.props;
+    console.log(isLiked);
     return (
       <nav className={classes.Navbar}>
         <div className={classes.BackButton}>
@@ -30,7 +38,11 @@ class Navbar extends Component {
         {!isSinglePalette && (
           <div className={classes.LikeButton}>
             <Link to="/" onClick={this.handleLike} className={classes.LikeLink}>
-              <FavoriteBorderIcon className={classes.LikeIcon} />
+              {isLiked ? (
+                <FavoriteIcon color="secondary" className={classes.LikeIcon} />
+              ) : (
+                <FavoriteBorderIcon className={classes.LikeIcon} />
+              )}
             </Link>
             <span className={classes.LikeCount}>{likes}</span>
           </div>

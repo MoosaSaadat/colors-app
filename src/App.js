@@ -46,6 +46,29 @@ class App extends Component {
       }
     });
   }
+  updateLikeStatus() {
+    let paletteIds = [];
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(this.state.userEmail)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          paletteIds = doc.data().liked;
+          let palettes = this.state.palettes.map((palette) => {
+            let currId = `${palette.creator}~${palette.id}`;
+            if (paletteIds.indexOf(currId) > -1) {
+              return { ...palette, isLiked: true };
+            }
+            return { ...palette, isLiked: false };
+          });
+          this.setState({ palettes });
+        } else {
+          alert("Not Found!");
+        }
+      });
+  }
   changePalettesView(viewName) {
     let cv = this.state.currView;
     if (viewName === "home" && cv !== "home") {
@@ -75,7 +98,10 @@ class App extends Component {
           savedPalettes.push(doc.data());
         });
         console.log(savedPalettes);
-        this.setState({ palettes: savedPalettes, isLoadingPalettes: false });
+        this.setState(
+          { palettes: savedPalettes, isLoadingPalettes: false },
+          () => this.updateLikeStatus()
+        );
       });
   }
   getLatestPalettes() {
@@ -92,7 +118,10 @@ class App extends Component {
             latestPalettes.push(doc.data());
         });
         console.log(latestPalettes);
-        this.setState({ palettes: latestPalettes, isLoadingPalettes: false });
+        this.setState(
+          { palettes: latestPalettes, isLoadingPalettes: false },
+          () => this.updateLikeStatus()
+        );
       });
   }
   getTrendingPalettes() {
@@ -108,7 +137,10 @@ class App extends Component {
           if (doc.data().likes > 0) trendingPalettes.push(doc.data());
         });
         console.log(trendingPalettes);
-        this.setState({ palettes: trendingPalettes, isLoadingPalettes: false });
+        this.setState(
+          { palettes: trendingPalettes, isLoadingPalettes: false },
+          () => this.updateLikeStatus()
+        );
       });
   }
   getLikedPalettes() {
@@ -122,30 +154,29 @@ class App extends Component {
       .then((doc) => {
         if (doc.exists) {
           paletteIds = doc.data().liked;
+          let paletteList = [];
+          firebase
+            .firestore()
+            .collection("palettes")
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                if (paletteIds.indexOf(doc.id) > -1) {
+                  paletteList.push(doc.data());
+                }
+              });
+              this.setState(
+                {
+                  palettes: paletteList,
+                  isLoadingPalettes: false,
+                },
+                () => this.updateLikeStatus()
+              );
+            });
         } else {
           alert("Not Found!");
         }
       });
-    let paletteList = [];
-    paletteIds.forEach((docId) => {
-      firebase
-        .firestore()
-        .collection("palettes")
-        .doc(docId)
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            paletteList.push(doc.data());
-          } else {
-            alert("Not Found!");
-          }
-        });
-    });
-    console.log(this.state.paletteList);
-    this.setState({
-      palettes: paletteList,
-      isLoadingPalettes: false,
-    });
   }
   findPalette(id) {
     return this.state.palettes.find((palette) => palette.id === id);
@@ -155,7 +186,7 @@ class App extends Component {
     let newPaletteList = this.state.palettes.map((palette) => {
       if (palette.id === id) {
         newLikes = palette.likes + 1;
-        return { ...palette, likes: newLikes };
+        return { ...palette, likes: newLikes, isLiked: true };
       }
       return palette;
     });
