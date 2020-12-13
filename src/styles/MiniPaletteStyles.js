@@ -24,19 +24,43 @@ export default (theme) => ({
     alignContent: "flex-start",
     justifyContent: "flex-start",
   },
-  title: {
+  metaInfoContainer: {
+    color: "white",
+    height: "50px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: "0",
-    color: "white",
-    paddingTop: "0.5rem",
-    fontSize: "1rem",
-    position: "relative",
   },
-  emoji: {
-    marginLeft: "0.5rem",
-    fontSize: "1.5rem",
+  metaInfo: {
+    display: "flex",
+    flexFlow: "column nowrap",
+    width: "70%",
+  },
+  title: {
+    fontSize: "1rem",
+  },
+  creator: {
+    fontSize: "0.8rem",
+    fontStyle: "italic",
+  },
+  likesInfo: {
+    display: "flex",
+    width: "25%",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  likeBtn: {
+    fontSize: "1.2rem",
+    "&:hover": {
+      fontSize: "1.5rem",
+      transition: "0.2s ease-in-out",
+    },
+  },
+  likedBtn: {
+    color: "#f50057",
+  },
+  likeCount: {
+    fontSize: "1rem",
   },
   miniColorBox: {
     height: "25%",

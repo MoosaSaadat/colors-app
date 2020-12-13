@@ -42,13 +42,16 @@ class MiniPalette extends PureComponent {
           />
         </div>
         <div className={classes.colors}>{colorsList}</div>
-        <p className={classes.title}>
-          {/* {paletteName} <span className={classes.emoji}>{emoji}</span> */}
-          {paletteName}{" "}
-          <span className={classes.emoji}>
-            <FavoriteBorderIcon />
-          </span>
-        </p>
+        <div className={classes.metaInfoContainer}>
+          <div className={classes.metaInfo}>
+            <span className={classes.title}>{paletteName}</span>
+            <span className={classes.creator}>{"by Moosa"}</span>
+          </div>
+          <div className={classes.likesInfo}>
+            <FavoriteBorderIcon className={classes.likeBtn} />
+            <span className={classes.likeCount}>{"99"}</span>
+          </div>
+        </div>
       </div>
     );
   }
