@@ -65,7 +65,14 @@ class HomePage extends Component {
             </div>
           </div>
         </nav>
-        <PaletteList {...this.props} />
+        <PaletteList
+          palettes={this.props.palettes}
+          {...this.props.routeProps}
+          likePalette={this.props.likePalette}
+          deletePalette={this.props.deletePalette}
+          restorePalettes={this.props.restorePalettes}
+          isLoadingPalettes={this.props.isLoadingPalettes}
+        />
         <Fab
           className={classes.AddBtn}
           color="secondary"

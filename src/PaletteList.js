@@ -50,7 +50,7 @@ class PaletteList extends Component {
     this.closeDialog();
   }
   render() {
-    const { palettes, classes } = this.props;
+    const { palettes, classes, isLoadingPalettes } = this.props;
     const { openDialog } = this.state;
     let palettesList = palettes.map((palette) => (
       <CSSTransition
@@ -66,7 +66,16 @@ class PaletteList extends Component {
       </CSSTransition>
     ));
     const noPalettes = palettes.length === 0;
-    if (noPalettes) {
+    console.log(isLoadingPalettes, noPalettes);
+    if (isLoadingPalettes) {
+      palettesList = (
+        <CSSTransition classNames="fade" timeout={fadeTransitionTime} key={1}>
+          <div className={classes.msg}>
+            <h2>Loading ...</h2>
+          </div>
+        </CSSTransition>
+      );
+    } else if (noPalettes) {
       palettesList = (
         <CSSTransition classNames="fade" timeout={fadeTransitionTime} key={1}>
           <div className={classes.msg}>

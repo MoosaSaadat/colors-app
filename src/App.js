@@ -24,7 +24,9 @@ class App extends Component {
       palettes: [],
       authUser: false,
       userEmail: null,
+      isLoadingPalettes: true,
     };
+    this.likePalette = this.likePalette.bind(this);
     this.savePalette = this.savePalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
     // this.restorePalettes = this.restorePalettes.bind(this);
@@ -42,27 +44,29 @@ class App extends Component {
       if (authUser) {
         this.setState({ authUser: true, userEmail: authUser.email });
         this.getSavedPalettes();
-        this.getLikedPalettes();
       } else {
         this.setState({ authUser: false, userEmail: null });
       }
     });
   }
   getSavedPalettes() {
+    this.setState({ isLoadingPalettes: true });
     firebase
       .firestore()
       .collection("palettes")
       .where("creator", "==", this.state.userEmail)
-      .onSnapshot((querySnapshot) => {
-        let palettes = [];
+      .get()
+      .then((querySnapshot) => {
+        let savedPalettes = [];
         querySnapshot.forEach((doc) => {
-          palettes.push(doc.data());
+          savedPalettes.push(doc.data());
         });
-        console.log(palettes);
-        this.setState({ palettes });
+        console.log(savedPalettes);
+        this.setState({ palettes: savedPalettes, isLoadingPalettes: false });
       });
   }
   getLatestPalettes() {
+    this.setState({ isLoadingPalettes: true });
     firebase
       .firestore()
       .collection("palettes")
@@ -70,30 +74,32 @@ class App extends Component {
       .orderBy("timestamp", "desc")
       .get()
       .then((querySnapshot) => {
-        let palettes = [];
+        let latestPalettes = [];
         querySnapshot.forEach((doc) => {
-          palettes.push(doc.data());
+          latestPalettes.push(doc.data());
         });
-        console.log(palettes);
-        this.setState({ palettes });
+        console.log(latestPalettes);
+        this.setState({ palettes: latestPalettes, isLoadingPalettes: false });
       });
   }
   getTrendingPalettes() {
+    this.setState({ isLoadingPalettes: true });
     firebase
       .firestore()
       .collection("palettes")
       .orderBy("likes", "desc")
       .get()
       .then((querySnapshot) => {
-        let palettes = [];
+        let trendingPalettes = [];
         querySnapshot.forEach((doc) => {
-          palettes.push(doc.data());
+          trendingPalettes.push(doc.data());
         });
-        console.log(palettes);
-        this.setState({ palettes });
+        console.log(trendingPalettes);
+        this.setState({ palettes: trendingPalettes, isLoadingPalettes: false });
       });
   }
   getLikedPalettes() {
+    this.setState({ isLoadingPalettes: true });
     let paletteIds = [];
     firebase
       .firestore()
@@ -122,13 +128,52 @@ class App extends Component {
           }
         });
     });
+    console.log(this.state.paletteList);
     this.setState({
       palettes: paletteList,
+      isLoadingPalettes: false,
     });
-    console.log(this.state.palettes);
   }
   findPalette(id) {
     return this.state.palettes.find((palette) => palette.id === id);
+  }
+  likePalette(id) {
+    let newLikes = null;
+    let newPaletteList = this.state.palettes.map((palette) => {
+      if (palette.id === id) {
+        newLikes = palette.likes + 1;
+        return { ...palette, likes: newLikes };
+      }
+      return palette;
+    });
+    this.setState(
+      () => {
+        return { palettes: newPaletteList };
+      },
+      () => this.likeToDB(id, newLikes)
+    );
+  }
+  likeToDB(id, newLikes) {
+    let docID = `${this.state.userEmail}~${id}`;
+    // Update Palette Collection
+    firebase
+      .firestore()
+      .collection("palettes")
+      .doc(docID)
+      .update({
+        likes: newLikes,
+      })
+      .then(() => {
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(this.state.userEmail)
+          .update({
+            liked: firebase.firestore.FieldValue.arrayUnion(docID),
+          })
+          .catch((error) => alert(error.message));
+      })
+      .catch((error) => alert(error.message));
   }
   savePalette(newPalette, editPaletteId) {
     // console.log(newPalette, editPaletteId);
@@ -261,8 +306,10 @@ class App extends Component {
                   <HomePage
                     palettes={this.state.palettes}
                     {...routeProps}
+                    likePalette={this.likePalette}
                     deletePalette={this.deletePalette}
                     restorePalettes={this.restorePalettes}
+                    isLoadingPalettes={this.state.isLoadingPalettes}
                   />
                 </Page>
               )}
@@ -277,6 +324,7 @@ class App extends Component {
                     palette={generatePalette(
                       this.findPalette(routeProps.match.params.id)
                     )}
+                    likePalette={this.likePalette}
                   />
                 </Page>
               )}

@@ -10,6 +10,11 @@ import "rc-slider/assets/index.css";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.handleLike = this.handleLike.bind(this);
+  }
+  handleLike(e) {
+    e.preventDefault();
+    this.props.likePalette(this.props.id);
   }
   render() {
     const { name, creator, likes, isSinglePalette, classes } = this.props;
@@ -24,7 +29,7 @@ class Navbar extends Component {
         <span className={classes.CreatorName}>by {creator.split("@")[0]}</span>
         {!isSinglePalette && (
           <div className={classes.LikeButton}>
-            <Link to="/" className={classes.LikeLink}>
+            <Link to="/" onClick={this.handleLike} className={classes.LikeLink}>
               <FavoriteBorderIcon className={classes.LikeIcon} />
             </Link>
             <span className={classes.LikeCount}>{likes}</span>

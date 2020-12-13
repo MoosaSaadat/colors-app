@@ -23,7 +23,7 @@ class Palette extends Component {
     this.setState({ format });
   }
   render() {
-    const { classes } = this.props;
+    const { classes, likePalette } = this.props;
     const { colors, paletteName, creator, likes, id } = this.props.palette;
     console.log(this.props.palette);
     const colorBoxes = colors[this.state.level].map((color) => (
@@ -37,7 +37,13 @@ class Palette extends Component {
     ));
     return (
       <div>
-        <Navbar name={paletteName} creator={creator} likes={likes} />
+        <Navbar
+          id={id}
+          name={paletteName}
+          creator={creator}
+          likes={likes}
+          likePalette={likePalette}
+        />
         <PaletteSidebar
           level={this.state.level}
           changeLevel={this.changeLevel}
